@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kamatamis Spread - Products & Pricing. Original and Spicy-Chili flavors with transparent ingredient sourcing.">
+  <meta name="theme-color" content="#8B1A1A">
+  <title>Kamatamis Spread</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍅</text></svg>">
+</head>
+<body>
+  <div id="app-header"></div>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <main id="main-content" role="main">
+    <section class="section-padding" style="background-color: var(--color-surface-alt);" aria-labelledby="products-title">
+      <div class="container">
+        <header class="section-header">
+          <h2 id="products-title" class="section-title">Our Products</h2>
+          <p class="section-subtitle">Premium quality, transparent sourcing</p>
+        </header>
+        <div class="grid grid-2-col">
+          <article class="card product-card" data-reveal>
+            <div style="position: relative;">
+              <img src="https://images.unsplash.com/photo-1598514982285-2a57cf24b67c?w=400&h=400&fit=crop" alt="Kamatamis Spread Original Flavor" class="card-image">
+              <span class="badge badge-flavor product-badge">Original</span>
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">Classic Flavor</h3>
+              <p class="product-description">Soft, smooth texture with a balanced sweet tomato taste. Slow-cooked with brown sugar, lemon juice, cinnamon, and ginger.</p>
+              <div class="product-price-row">
+                <span class="product-price">P114.00</span>
+                <span style="color: var(--color-text-light); font-size: 0.875rem;">/ 150ml jar</span>
+              </div>
+            </div>
+            <div class="card-footer">
+              <button class="btn btn-primary btn-sm" data-product-modal="classic">View Details</button>
+              <a href="contact.html" class="btn btn-secondary btn-sm">Pre-Order</a>
+            </div>
+          </article>
+          <article class="card product-card" data-reveal>
+            <div style="position: relative;">
+              <img src="https://images.unsplash.com/photo-1560490678-e37d89d3a7b0?w=400&h=400&fit=crop" alt="Kamatamis Spread Spicy-Chili Flavor" class="card-image">
+              <span class="badge badge-flavor spicy product-badge">Spicy</span>
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">Spicy-Chili Flavor</h3>
+              <p class="product-description">Same smooth texture with a balanced spicy kick from chili powder and flakes.</p>
+              <div class="product-price-row">
+                <span class="product-price">P119.00</span>
+                <span style="color: var(--color-text-light); font-size: 0.875rem;">/ 150ml jar</span>
+              </div>
+            </div>
+            <div class="card-footer">
+              <button class="btn btn-primary btn-sm" data-product-modal="spicy">View Details</button>
+              <a href="contact.html" class="btn btn-secondary btn-sm">Pre-Order</a>
+            </div>
+          </article>
+        </div>
+        <div style="text-align: center; margin-top: var(--spacing-xl);" data-reveal>
+          <a href="contact.html" class="btn btn-accent btn-lg">Place a Pre-Order</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-padding" aria-labelledby="transparency-title">
+      <div class="container">
+        <header class="section-header">
+          <h2 id="transparency-title" class="section-title">Transparent Sourcing</h2>
+          <p class="section-subtitle">Every ingredient accounted for</p>
+        </header>
+        <div class="tabs" data-reveal>
+          <button class="tab-btn active" data-tab-target="tab-ingredients">Ingredients</button>
+          <button class="tab-btn" data-tab-target="tab-costs">Indirect Costs</button>
+          <button class="tab-btn" data-tab-target="tab-nutrition">Nutrition</button>
+        </div>
+        <div id="tab-ingredients" class="tab-panel active" data-reveal>
+          <div class="table-responsive">
+            <table class="table-custom" id="table-ingredients">
+              <thead>
+                <tr>
+                  <th data-sortable>Ingredient</th>
+                  <th data-sortable>Source</th>
+                  <th data-sortable>Purpose</th>
+                  <th data-sortable>Qty per Batch</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Surplus Tomatoes</strong></td><td>Bukidnon Farms</td><td>Primary base</td><td>50 kg</td></tr>
+                <tr><td><strong>Brown Sugar</strong></td><td>Negros Occidental</td><td>Sweetener</td><td>15 kg</td></tr>
+                <tr><td><strong>Lemon Juice</strong></td><td>Local Suppliers</td><td>Preservative & flavor</td><td>2 L</td></tr>
+                <tr><td><strong>Cinnamon Powder</strong></td><td>Camarines Sur</td><td>Warm flavor</td><td>500 g</td></tr>
+                <tr><td><strong>Fresh Ginger</strong></td><td>Oriental Mindoro</td><td>Aromatic spice</td><td>2 kg</td></tr>
+                <tr><td><strong>Chili Powder</strong></td><td>Batangas</td><td>Heat source</td><td>500 g</td></tr>
+                <tr><td><strong>Chili Flakes</strong></td><td>Batangas</td><td>Texture & heat</td><td>300 g</td></tr>
+                <tr><td><strong>Salt</strong></td><td>Local Market</td><td>Flavor enhancer</td><td>200 g</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div id="tab-costs" class="tab-panel" data-reveal>
+          <div class="table-responsive">
+            <table class="table-custom" id="table-costs">
+              <thead>
+                <tr>
+                  <th data-sortable>Cost Category</th>
+                  <th data-sortable>Item</th>
+                  <th data-sortable>Amount</th>
+                  <th data-sortable>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td colspan="4" style="background-color: var(--color-surface-alt); font-weight: 600;">Table 1 — Raw Materials</td></tr>
+                <tr><td>Raw Materials</td><td>Surplus Tomatoes</td><td>P2,500.00</td><td>Per 50 kg batch</td></tr>
+                <tr><td>Raw Materials</td><td>Brown Sugar</td><td>P1,200.00</td><td>Per 15 kg batch</td></tr>
+                <tr><td>Raw Materials</td><td>Spices & Flavoring</td><td>P800.00</td><td>All spices combined</td></tr>
+                <tr><td colspan="4" style="background-color: var(--color-surface-alt); font-weight: 600;">Table 2 — Packaging & Labor</td></tr>
+                <tr><td>Packaging</td><td>Eco Glass Jars (150ml)</td><td>P85.00</td><td>Per jar</td></tr>
+                <tr><td>Packaging</td><td>Metal Lids</td><td>P12.00</td><td>Per jar</td></tr>
+                <tr><td>Packaging</td><td>Labels & Stickers</td><td>P5.00</td><td>Per jar</td></tr>
+                <tr><td>Labor</td><td>Processing & Assembly</td><td>P300.00</td><td>Per batch</td></tr>
+                <tr><td colspan="4" style="background-color: var(--color-surface-alt); font-weight: 600;">Table 3 — Logistics & Overhead</td></tr>
+                <tr><td>Logistics</td><td>Transport</td><td>P2,000.00</td><td>Per batch</td></tr>
+                <tr><td>Overhead</td><td>Utilities</td><td>P1,500.00</td><td>Per batch</td></tr>
+                <tr><td>Overhead</td><td>Marketing & Distribution</td><td>P1,000.00</td><td>Per batch</td></tr>
+                <tr style="font-weight: 700; background-color: #FFF8F8;"><td colspan="2">Total Indirect Cost per Batch</td><td>P9,302.00</td><td>Excluding profit margin</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div id="tab-nutrition" class="tab-panel" data-reveal>
+          <div class="table-responsive">
+            <table class="table-custom" id="table-nutrition">
+              <thead>
+                <tr>
+                  <th data-sortable>Nutrient</th>
+                  <th data-sortable>Per 100ml</th>
+                  <th data-sortable>Daily Value*</th>
+                  <th data-sortable>Benefit</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Lycopene</strong></td><td>8.5 mg</td><td>High</td><td>Antioxidant, heart health</td></tr>
+                <tr><td><strong>Vitamin C</strong></td><td>12 mg</td><td>20%</td><td>Immune support, skin health</td></tr>
+                <tr><td><strong>Potassium</strong></td><td>210 mg</td><td>4%</td><td>Blood pressure regulation</td></tr>
+                <tr><td><strong>Iron</strong></td><td>0.4 mg</td><td>2%</td><td>Oxygen transport</td></tr>
+                <tr><td><strong>Vitamin A</strong></td><td>450 IU</td><td>9%</td><td>Eye health, vision</td></tr>
+                <tr><td><strong>Calcium</strong></td><td>18 mg</td><td>1%</td><td>Bone health</td></tr>
+                <tr><td><strong>Calories</strong></td><td>48 kcal</td><td>2%</td><td>Natural energy source</td></tr>
+                <tr><td><strong>Carbohydrates</strong></td><td>11 g</td><td>4%</td><td>Sustained energy</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="font-size: 0.8125rem; color: var(--color-text-muted); margin-top: var(--spacing-sm);">*Based on a 2,000 calorie diet. Values are approximate and may vary by batch.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <div id="app-footer"></div>
+  <script src="../scripts/components.js"></script>
+  <script src="../scripts/script.js"></script>
+</body>
+</html>

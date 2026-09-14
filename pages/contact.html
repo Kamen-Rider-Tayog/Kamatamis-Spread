@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kamatamis Spread - Team & Pre-Order. Meet the founders and place your order.">
+  <meta name="theme-color" content="#8B1A1A">
+  <title>Kamatamis Spread</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍅</text></svg>">
+</head>
+<body>
+  <div id="app-header"></div>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <main id="main-content" role="main">
+    <section class="section-padding" style="background-color: var(--color-surface-alt);" aria-labelledby="team-title">
+      <div class="container">
+        <header class="section-header">
+          <h2 id="team-title" class="section-title">Meet Our Founders</h2>
+          <p class="section-subtitle">Cavite State University — General Trias City Campus</p>
+        </header>
+        <div class="grid grid-4-col" style="margin-bottom: var(--spacing-2xl);">
+          <article class="card" data-reveal>
+            <div style="width: 100%; aspect-ratio: 1/1; background-color: var(--color-primary); border-radius: var(--radius-lg) var(--radius-lg) 0 0; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: #FFFFFF;">F</div>
+            <div class="card-content" style="text-align: center;">
+              <h3 class="card-title">Fatima G. Guevarra</h3>
+              <p class="card-text" style="font-size: 0.875rem;">Operations & Supply Chain</p>
+            </div>
+          </article>
+          <article class="card" data-reveal>
+            <div style="width: 100%; aspect-ratio: 1/1; background-color: var(--color-primary); border-radius: var(--radius-lg) var(--radius-lg) 0 0; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: #FFFFFF;">A</div>
+            <div class="card-content" style="text-align: center;">
+              <h3 class="card-title">Antonette M. Grapiza</h3>
+              <p class="card-text" style="font-size: 0.875rem;">Marketing & Community Lead</p>
+            </div>
+          </article>
+          <article class="card" data-reveal>
+            <div style="width: 100%; aspect-ratio: 1/1; background-color: var(--color-primary); border-radius: var(--radius-lg) var(--radius-lg) 0 0; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: #FFFFFF;">R</div>
+            <div class="card-content" style="text-align: center;">
+              <h3 class="card-title">Roze C. Pacites</h3>
+              <p class="card-text" style="font-size: 0.875rem;">Brand & Quality Assurance</p>
+            </div>
+          </article>
+          <article class="card" data-reveal>
+            <div style="width: 100%; aspect-ratio: 1/1; background-color: var(--color-primary); border-radius: var(--radius-lg) var(--radius-lg) 0 0; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: #FFFFFF;">M</div>
+            <div class="card-content" style="text-align: center;">
+              <h3 class="card-title">Mahjarko T. Agravio</h3>
+              <p class="card-text" style="font-size: 0.875rem;">Lead Developer & Product Designer</p>
+            </div>
+          </article>
+        </div>
+        <div style="text-align: center;" data-reveal>
+          <p style="font-family: var(--font-script); font-size: clamp(1.5rem, 3vw, 1.875rem); color: var(--color-secondary); margin-bottom: var(--spacing-md);">Built with <i data-lucide="heart" class="heart-icon" style="color:#C62828;display:inline;"></i> at Cavite State University</p>
+          <p style="color: var(--color-text-light);">Department of Technology — General Trias City Campus</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-padding" aria-labelledby="order-title">
+      <div class="container">
+        <header class="section-header">
+          <h2 id="order-title" class="section-title">Pre-Order Kamatamis</h2>
+          <p class="section-subtitle">Fill out the form below and we'll get back to you</p>
+        </header>
+        <div class="grid grid-2-col" style="align-items: start;">
+          <div>
+            <div class="order-summary" id="order-sidebar" data-order-summary>
+              <h3 class="order-summary-title">Order Summary</h3>
+              <p style="color: var(--color-text-light); text-align: center; padding: var(--spacing-lg);">Select products and quantities to see your order summary</p>
+            </div>
+          </div>
+          <div>
+            <form id="order-form" novalidate data-reveal>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="form-name">Full Name <span class="required">*</span></label>
+                  <input type="text" id="form-name" name="name" class="form-input" placeholder="Enter your full name" required>
+                  <span class="form-error" aria-live="polite"></span>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="form-email">Email Address <span class="required">*</span></label>
+                  <input type="email" id="form-email" name="email" class="form-input" placeholder="you@example.com" required>
+                  <span class="form-error" aria-live="polite"></span>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="form-phone">Phone Number</label>
+                  <input type="tel" id="form-phone" name="phone" class="form-input" placeholder="+63 9XX XXX XXXX">
+                  <span class="form-error" aria-live="polite"></span>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="form-address">Delivery Address <span class="required">*</span></label>
+                  <input type="text" id="form-address" name="address" class="form-input" placeholder="Full shipping address" required>
+                  <span class="form-error" aria-live="polite"></span>
+                </div>
+              </div>
+
+              <fieldset style="border: none; margin-bottom: var(--spacing-xl);">
+                <legend class="form-label" style="margin-bottom: var(--spacing-md);">Select Flavors <span class="required">*</span></legend>
+                <div class="checkbox-group">
+                  <label class="checkbox-label">
+                    <input type="checkbox" class="checkbox-input" name="flavor" value="classic" data-flavor-select="classic" required>
+                    <span class="checkbox-custom" aria-hidden="true"></span>
+                    <span><strong>Classic Flavor</strong> — P114.00 / 150ml jar</span>
+                  </label>
+                  <label class="checkbox-label">
+                    <input type="checkbox" class="checkbox-input" name="flavor" value="spicy" data-flavor-select="spicy">
+                    <span class="checkbox-custom" aria-hidden="true"></span>
+                    <span><strong>Spicy-Chili Flavor</strong> — P119.00 / 150ml jar</span>
+                  </label>
+                </div>
+              </fieldset>
+
+              <fieldset style="border: none; margin-bottom: var(--spacing-xl);">
+                <legend class="form-label" style="margin-bottom: var(--spacing-md);">Quantities</legend>
+                <div class="grid grid-2-col">
+                  <div>
+                    <label class="form-label" style="margin-bottom: var(--spacing-sm);">Original Flavor</label>
+                    <div class="quantity-selector" data-product-id="classic">
+                      <button type="button" class="quantity-btn" data-action="decrement" aria-label="Decrease quantity">
+                        <i data-lucide="minus" style="width:18px;height:18px;"></i>
+                      </button>
+                      <input type="number" class="quantity-input" value="0" min="0" max="99" data-product-id="classic" aria-label="Classic Flavor quantity">
+                      <button type="button" class="quantity-btn" data-action="increment" aria-label="Increase quantity">
+                        <i data-lucide="plus" style="width:18px;height:18px;"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div>
+                    <label class="form-label" style="margin-bottom: var(--spacing-sm);">Spicy-Chili Flavor</label>
+                    <div class="quantity-selector" data-product-id="spicy">
+                      <button type="button" class="quantity-btn" data-action="decrement" aria-label="Decrease quantity">
+                        <i data-lucide="minus" style="width:18px;height:18px;"></i>
+                      </button>
+                      <input type="number" class="quantity-input" value="0" min="0" max="99" data-product-id="spicy" aria-label="Spicy-Chili Flavor quantity">
+                      <button type="button" class="quantity-btn" data-action="increment" aria-label="Increase quantity">
+                        <i data-lucide="plus" style="width:18px;height:18px;"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+
+              <div class="form-group">
+                <label class="form-label" for="form-notes">Additional Notes</label>
+                <textarea id="form-notes" name="notes" class="form-textarea" placeholder="Any dietary preferences, delivery instructions, or questions..."></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-accent btn-lg btn-full" id="submit-btn">
+                <i data-lucide="send" style="width:18px;height:18px;display:inline;vertical-align:middle;margin-right:8px;"></i>Submit Pre-Order
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <div id="app-footer"></div>
+  <script src="../scripts/components.js"></script>
+  <script src="../scripts/script.js"></script>
+</body>
+</html>
