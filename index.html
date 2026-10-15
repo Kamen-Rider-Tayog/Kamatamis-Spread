@@ -3,9 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Kamatamis Spread - Upcycled surplus tomato jam. Where Every Tomato Counts.">
+  <meta name="description" content="Kamatamis Spread - Upcycled second-class tomato jam. Where Every Tomato Counts.">
   <meta name="theme-color" content="#8B1A1A">
-  <title>Kamatamis Spread</title>
+  <meta property="og:title" content="Kamatamis Spread | Upcycled Second-Class Tomato Jam">
+  <meta property="og:description" content="Kamatamis Spread - Upcycled second-class tomato jam. Where Every Tomato Counts.">
+  <meta property="og:type" content="website">
+  <title>Kamatamis Spread | Upcycled Second-Class Tomato Jam</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
@@ -19,14 +22,19 @@
   <main id="main-content" role="main">
     <section class="hero" aria-labelledby="hero-title">
       <div class="container">
-        <div class="hero-content" data-reveal>
-          <span class="hero-tagline">Where Every Tomato Counts</span>
-          <h1 id="hero-title" class="hero-title">Upcycled Surplus Tomatoes,<br>Crafted into Premium Spread</h1>
-          <p class="hero-description">Kamatamis Spread transforms overlooked, surplus tomatoes from Bukidnon farms into a rich, nutritious jam. Every jar reduces food waste, supports farmer livelihoods, and delivers the concentrated goodness of lycopene-rich tomatoes.</p>
-          <div class="hero-actions">
-            <a href="products.html" class="btn btn-primary btn-lg">Shop Flavors</a>
-            <a href="impact.html" class="btn btn-secondary btn-lg">Learn Our Impact</a>
- ../         </div>
+        <div class="hero-grid">
+          <div class="hero-content" data-reveal>
+            <span class="hero-tagline">Where Every Tomato Counts</span>
+            <h1 id="hero-title" class="hero-title">Upcycled Second-Class Tomatoes,<br>Crafted into Premium Spread</h1>
+            <p class="hero-description">Kamatamis Spread transforms overlooked, second-class tomatoes from Bukidnon farms into a rich, nutritious jam. Every jar reduces food waste, supports farmer livelihoods, and delivers the concentrated goodness of lycopene-rich tomatoes.</p>
+            <div class="hero-actions">
+              <a href="products.html" class="btn btn-primary btn-lg">Shop Flavors</a>
+              <a href="impact.html" class="btn btn-secondary btn-lg">Learn Our Impact</a>
+            </div>
+          </div>
+          <div class="hero-media" data-reveal>
+            <img src="assets/images/hero-illustration.svg" alt="Kamatamis tomato spread jar surrounded by second-class tomatoes" width="600" height="460" decoding="async">
+          </div>
         </div>
       </div>
     </section>
@@ -41,15 +49,15 @@
           <article class="card" data-reveal>
             <div class="card-content">
               <span class="badge badge-new"><i data-lucide="leaf" style="margin-right:4px;width:14px;height:14px;display:inline;vertical-align:middle;"></i> Circular Economy</span>
-              <h3 class="card-title">Upcycled Surplus Tomatoes</h3>
-              <p class="card-text">We rescue oddly-shaped, blemished, and surplus tomatoes that would otherwise go to waste — up to 37.71% of harvest lost in traditional supply chains.</p>
+              <h3 class="card-title">Upcycled Second-Class Tomatoes</h3>
+              <p class="card-text">We rescue oddly-shaped, blemished, and second-class tomatoes that would otherwise go to waste — up to 37.71% of harvest lost in traditional supply chains.</p>
             </div>
           </article>
           <article class="card" data-reveal>
             <div class="card-content">
               <span class="badge badge-new"><i data-lucide="users" style="margin-right:4px;width:14px;height:14px;display:inline;vertical-align:middle;"></i> Community Impact</span>
               <h3 class="card-title">Farm-to-Jar Livelihood Support</h3>
-              <p class="card-text">Stable demand for surplus produce means fair farmgate prices for Bukidnon farmers, protecting them from prices dropping to P4–P6/kg during oversupply.</p>
+              <p class="card-text">Stable demand for second-class produce means fair farmgate prices for Bukidnon farmers, protecting them from prices dropping to P4–P6/kg during oversupply.</p>
             </div>
           </article>
           <article class="card" data-reveal>
@@ -72,7 +80,7 @@
         <div class="grid grid-2-col">
           <article class="card product-card" data-reveal>
             <div style="position: relative;">
-              <img src="https://images.unsplash.com/photo-1598514982285-2a57cf24b67c?w=400&h=300&fit=crop" alt="Kamatamis Spread Original Flavor" class="card-image">
+              <img src="assets/images/classic-jar.svg" alt="Kamatamis Spread Original Flavor" class="card-image" width="400" height="300" loading="lazy" decoding="async">
               <span class="badge badge-flavor product-badge">Original</span>
             </div>
             <div class="product-info">
@@ -85,12 +93,11 @@
             </div>
             <div class="card-footer">
               <button class="btn btn-primary btn-sm" data-product-modal="classic">View Details</button>
-              <a href="contact.html" class="btn btn-secondary btn-sm">Pre-Order</a>
             </div>
           </article>
           <article class="card product-card" data-reveal>
             <div style="position: relative;">
-              <img src="https://images.unsplash.com/photo-1560490678-e37d89d3a7b0?w=400&h=300&fit=crop" alt="Kamatamis Spread Spicy-Chili Flavor" class="card-image">
+              <img src="assets/images/spicy-jar.svg" alt="Kamatamis Spread Spicy-Chili Flavor" class="card-image" width="400" height="300" loading="lazy" decoding="async">
               <span class="badge badge-flavor spicy product-badge">Spicy</span>
             </div>
             <div class="product-info">
@@ -103,7 +110,6 @@
             </div>
             <div class="card-footer">
               <button class="btn btn-primary btn-sm" data-product-modal="spicy">View Details</button>
-              <a href="contact.html" class="btn btn-secondary btn-sm">Pre-Order</a>
             </div>
           </article>
         </div>
@@ -141,8 +147,7 @@
         <h2 id="cta-title" class="section-title" style="color: #FFFFFF;">Ready to Taste the Difference?</h2>
         <p class="section-subtitle" style="color: var(--color-secondary);">Join us in reducing waste, one delicious jar at a time.</p>
         <div style="display: flex; flex-wrap: wrap; gap: var(--spacing-md); justify-content: center; margin-top: var(--spacing-xl);">
-          <a href="products.html" class="btn btn-accent btn-lg">Shop Now</a>
-          <a href="contact.html" class="btn btn-secondary btn-lg" style="border-color: #FFFFFF; color: #FFFFFF;">Place Pre-Order</a>
+          <a href="contact.html#order-form" class="btn btn-accent btn-lg">Place Pre-Order</a>
         </div>
       </div>
     </section>
@@ -150,7 +155,8 @@
 
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <div id="app-footer"></div>
-  <script src="/scripts/components.js"></script>
-  <script src="/scripts/script.js"></script>
+  <script src="scripts/config.js"></script>
+  <script src="scripts/components.js"></script>
+  <script src="scripts/script.js"></script>
 </body>
 </html>

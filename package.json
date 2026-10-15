@@ -1,0 +1,11 @@
+{
+  "name": "kamatamis-spread",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Kamatamis Spread marketing site",
+  "scripts": {
+    "check": "node scripts/check.js",
+    "build": "node scripts/build.js",
+    "preview": "node scripts/build.js && python -m http.server 8000 --directory dist"
+  }
+}

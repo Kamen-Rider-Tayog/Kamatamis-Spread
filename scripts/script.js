@@ -1,7 +1,42 @@
+const WEB3FORMS_KEY = (window.KAMATAMIS_CONFIG && window.KAMATAMIS_CONFIG.web3formsKey) || '';
+
+function showToast(message, type = 'success') {
+  const existingToast = document.querySelector('.toast');
+  if (existingToast) existingToast.remove();
+
+  const toast = document.createElement('div');
+  toast.className = `toast ${type}`;
+  toast.innerHTML = `
+    <span>${message}</span>
+    <button class="toast-close" aria-label="Dismiss">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+  `;
+  document.body.appendChild(toast);
+
+  requestAnimationFrame(() => toast.classList.add('active'));
+
+  toast.querySelector('.toast-close').addEventListener('click', () => {
+    toast.classList.remove('active');
+    setTimeout(() => toast.remove(), 250);
+  });
+
+  setTimeout(() => {
+    if (toast.parentNode) {
+      toast.classList.remove('active');
+      setTimeout(() => toast.remove(), 250);
+    }
+  }, 4000);
+}
+
 class ModalManager {
   constructor() {
     this.modals = new Map();
     this.activeModal = null;
+    this.previousActiveElement = null;
     this.init();
   }
 
@@ -14,19 +49,17 @@ class ModalManager {
       });
     });
 
-    document.querySelectorAll('.modal-overlay').forEach(overlay => {
-      overlay.addEventListener('click', (e) => {
-        if (e.target === overlay) {
-          this.close(overlay.id);
-        }
-      });
-    });
-
-    document.querySelectorAll('.modal-close').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const overlay = btn.closest('.modal-overlay');
+    document.addEventListener('click', (e) => {
+      if (!(e.target instanceof Element)) return;
+      const closeBtn = e.target.closest('.modal-close');
+      if (closeBtn) {
+        const overlay = closeBtn.closest('.modal-overlay');
         if (overlay) this.close(overlay.id);
-      });
+        return;
+      }
+      if (e.target.classList.contains('modal-overlay')) {
+        this.close(e.target.id);
+      }
     });
 
     document.addEventListener('keydown', (e) => {
@@ -49,6 +82,7 @@ class ModalManager {
     }
 
     if (overlay) {
+      this.previousActiveElement = document.activeElement;
       this.activeModal = modalId;
       overlay.classList.add('active');
       document.body.style.overflow = 'hidden';
@@ -94,6 +128,10 @@ class ModalManager {
       overlay.classList.remove('active');
       document.body.style.overflow = '';
       this.activeModal = null;
+      if (this.previousActiveElement && typeof this.previousActiveElement.focus === 'function') {
+        this.previousActiveElement.focus();
+        this.previousActiveElement = null;
+      }
       setTimeout(() => {
         if (!overlay.classList.contains('active') && overlay.parentNode) {
           overlay.remove();
@@ -126,130 +164,13 @@ class ModalManager {
   }
 }
 
-class CartManager {
-  constructor() {
-    this.items = this.loadCart();
-    this.counters = document.querySelectorAll('.cart-badge');
-    this.init();
-  }
-
-  loadCart() {
-    try {
-      return JSON.parse(localStorage.getItem('kamatamis-cart')) || [];
-    } catch {
-      return [];
-    }
-  }
-
-  saveCart() {
-    localStorage.setItem('kamatamis-cart', JSON.stringify(this.items));
-    this.updateCounters();
-    this.dispatchUpdate();
-  }
-
-  getTotalItems() {
-    return this.items.reduce((sum, item) => sum + item.quantity, 0);
-  }
-
-  getTotalPrice() {
-    return this.items.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  }
-
-  addItem(product) {
-    const existing = this.items.find(item => item.id === product.id);
-    if (existing) {
-      existing.quantity += product.quantity || 1;
-    } else {
-      this.items.push({
-        id: product.id,
-        name: product.name,
-        price: product.price,
-        flavor: product.flavor,
-        quantity: product.quantity || 1,
-        image: product.image
-      });
-    }
-    this.saveCart();
-    this.showToast(`Added ${product.name} to order`);
-  }
-
-  removeItem(productId) {
-    this.items = this.items.filter(item => item.id !== productId);
-    this.saveCart();
-  }
-
-  updateQuantity(productId, quantity) {
-    const item = this.items.find(item => item.id === productId);
-    if (item) {
-      if (quantity <= 0) {
-        this.removeItem(productId);
-      } else {
-        item.quantity = quantity;
-        this.saveCart();
-      }
-    }
-  }
-
-  clearCart() {
-    this.items = [];
-    this.saveCart();
-  }
-
-  updateCounters() {
-    const count = this.getTotalItems();
-    this.counters.forEach(badge => {
-      badge.textContent = count;
-      badge.style.display = count > 0 ? 'flex' : 'none';
-    });
-  }
-
-  dispatchUpdate() {
-    window.dispatchEvent(new CustomEvent('cart-update', { detail: { items: this.items, total: this.getTotalPrice() } }));
-  }
-
-  showToast(message, type = 'success') {
-    const existingToast = document.querySelector('.toast');
-    if (existingToast) existingToast.remove();
-
-    const toast = document.createElement('div');
-    toast.className = `toast ${type}`;
-    toast.innerHTML = `
-      <span>${message}</span>
-      <button class="toast-close" aria-label="Dismiss">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="18" y1="6" x2="6" y2="18"></line>
-          <line x1="6" y1="6" x2="18" y2="18"></line>
-        </svg>
-      </button>
-    `;
-    document.body.appendChild(toast);
-
-    requestAnimationFrame(() => toast.classList.add('active'));
-
-    toast.querySelector('.toast-close').addEventListener('click', () => {
-      toast.classList.remove('active');
-      setTimeout(() => toast.remove(), 250);
-    });
-
-    setTimeout(() => {
-      if (toast.parentNode) {
-        toast.classList.remove('active');
-        setTimeout(() => toast.remove(), 250);
-      }
-    }, 4000);
-  }
-
-  init() {
-    this.updateCounters();
-  }
-}
-
 class TableFilter {
   constructor(tableSelector) {
     this.table = document.querySelector(tableSelector);
     if (!this.table) return;
     this.headers = this.table.querySelectorAll('th');
-    this.rows = this.table.querySelectorAll('tbody tr');
+    this.tbody = this.table.querySelector('tbody');
+    this.rows = Array.from(this.tbody.querySelectorAll('tr'));
     this.searchInput = document.querySelector(`[data-table-search="${tableSelector}"]`);
     this.sortDirections = new Map();
     this.init();
@@ -290,30 +211,61 @@ class TableFilter {
       }
     });
 
-    const rowsArray = Array.from(this.rows);
-    rowsArray.sort((a, b) => {
-      const aText = a.cells[columnIndex].textContent.trim();
-      const bText = b.cells[columnIndex].textContent.trim();
-      const aNum = parseFloat(aText.replace(/[^0-9.-]+/g, ''));
-      const bNum = parseFloat(bText.replace(/[^0-9.-]+/g, ''));
-      let comparison = 0;
-      if (!isNaN(aNum) && !isNaN(bNum)) {
-        comparison = aNum - bNum;
-      } else {
-        comparison = aText.localeCompare(bText);
-      }
-      return newDirection === 'asc' ? comparison : -comparison;
+    const groups = this.getGroups();
+    groups.forEach(group => {
+      group.rows.sort((a, b) => this.compareRows(a, b, columnIndex, newDirection));
     });
 
-    const tbody = this.table.querySelector('tbody');
-    rowsArray.forEach(row => tbody.appendChild(row));
+    groups.forEach(group => {
+      if (group.header) this.tbody.appendChild(group.header);
+      group.rows.forEach(row => this.tbody.appendChild(row));
+    });
+  }
+
+  compareRows(a, b, columnIndex, direction) {
+    const aText = a.cells[columnIndex].textContent.trim();
+    const bText = b.cells[columnIndex].textContent.trim();
+    const aNum = parseFloat(aText.replace(/[^0-9.-]+/g, ''));
+    const bNum = parseFloat(bText.replace(/[^0-9.-]+/g, ''));
+    let comparison = 0;
+    if (!isNaN(aNum) && !isNaN(bNum)) {
+      comparison = aNum - bNum;
+    } else {
+      comparison = aText.localeCompare(bText);
+    }
+    return direction === 'asc' ? comparison : -comparison;
+  }
+
+  getGroups() {
+    const groups = [];
+    let current = null;
+    this.rows.forEach(row => {
+      if (row.querySelector('td[colspan]')) {
+        current = { header: row, rows: [] };
+        groups.push(current);
+      } else {
+        if (!current) {
+          current = { header: null, rows: [] };
+          groups.push(current);
+        }
+        current.rows.push(row);
+      }
+    });
+    return groups;
   }
 
   filter(searchTerm) {
     const term = searchTerm.toLowerCase().trim();
-    this.rows.forEach(row => {
-      const text = row.textContent.toLowerCase();
-      row.style.display = text.includes(term) ? '' : 'none';
+    this.getGroups().forEach(group => {
+      let visibleCount = 0;
+      group.rows.forEach(row => {
+        const matches = row.textContent.toLowerCase().includes(term);
+        row.style.display = matches ? '' : 'none';
+        if (matches) visibleCount += 1;
+      });
+      if (group.header) {
+        group.header.style.display = term === '' || visibleCount > 0 ? '' : 'none';
+      }
     });
   }
 }
@@ -322,10 +274,9 @@ class OrderFormManager {
   constructor(formSelector) {
     this.form = document.querySelector(formSelector);
     if (!this.form) return;
-    this.cart = window.cartManager;
     this.products = [
-      { id: 'classic', name: 'Kamatamis Spread - Classic Flavor', price: 114, flavor: 'Classic', image: 'assets/images/classic-jar.jpg' },
-      { id: 'spicy', name: 'Kamatamis Spread - Spicy-Chili Flavor', price: 119, flavor: 'Spicy-Chili', image: 'assets/images/spicy-jar.jpg' }
+      { id: 'classic', name: 'Kamatamis Spread - Classic Flavor', price: 114, flavor: 'Classic', image: 'assets/images/classic-jar.svg' },
+      { id: 'spicy', name: 'Kamatamis Spread - Spicy-Chili Flavor', price: 119, flavor: 'Spicy-Chili', image: 'assets/images/spicy-jar.svg' }
     ];
     this.init();
   }
@@ -335,6 +286,7 @@ class OrderFormManager {
     this.bindFormSubmit();
     this.bindFlavorSelection();
     this.bindClearErrors();
+    this.applyFlavorParam();
     this.updateOrderSummary();
   }
 
@@ -346,11 +298,29 @@ class OrderFormManager {
         if (errorEl) errorEl.textContent = '';
       });
     });
-    this.form.querySelectorAll('[data-flavor-select]').forEach(cb => {
-      cb.addEventListener('change', () => {
-        cb.classList.remove('has-error');
+  }
+
+  applyFlavorParam() {
+    const flavor = new URLSearchParams(window.location.search).get('flavor');
+    if (!flavor) return;
+    const checkbox = this.form.querySelector(`[data-flavor-select="${flavor}"]`);
+    if (!checkbox) return;
+    checkbox.checked = true;
+    const qtyInput = this.form.querySelector(`.quantity-input[data-product-id="${flavor}"]`);
+    if (qtyInput) qtyInput.value = Math.max(1, parseInt(qtyInput.value, 10) || 0);
+  }
+
+  getSelectedItems() {
+    return this.products
+      .filter(product => {
+        const checkbox = this.form.querySelector(`[data-flavor-select="${product.id}"]`);
+        return checkbox && checkbox.checked;
+      })
+      .map(product => {
+        const qtyInput = this.form.querySelector(`.quantity-input[data-product-id="${product.id}"]`);
+        const quantity = Math.max(1, parseInt(qtyInput?.value, 10) || 0);
+        return { ...product, quantity };
       });
-    });
   }
 
   bindQuantitySelectors() {
@@ -382,34 +352,41 @@ class OrderFormManager {
 
   bindFlavorSelection() {
     this.form.querySelectorAll('[data-flavor-select]').forEach(checkbox => {
-      checkbox.addEventListener('change', () => this.updateOrderSummary());
+      checkbox.addEventListener('change', () => {
+        const productId = checkbox.getAttribute('data-flavor-select');
+        const qtyInput = this.form.querySelector(`.quantity-input[data-product-id="${productId}"]`);
+        if (checkbox.checked) {
+          const qty = Math.max(1, parseInt(qtyInput?.value, 10) || 0);
+          if (qtyInput) qtyInput.value = qty;
+        } else {
+          if (qtyInput) qtyInput.value = 0;
+        }
+        this.clearFlavorError();
+        this.updateOrderSummary();
+      });
     });
   }
 
+  clearFlavorError() {
+    const checkboxes = Array.from(this.form.querySelectorAll('[data-flavor-select]'));
+    if (!checkboxes.some(cb => cb.checked)) return;
+    checkboxes.forEach(cb => cb.classList.remove('has-error'));
+    const errorEl = this.form.querySelector('[data-flavor-error]');
+    if (errorEl) errorEl.textContent = '';
+  }
+
   handleQuantityChange(productId, quantity) {
-    const product = this.products.find(p => p.id === productId);
-    if (!product) return;
-
     const checkbox = this.form.querySelector(`[data-flavor-select="${productId}"]`);
-    if (quantity > 0 && checkbox) {
-      checkbox.checked = true;
-    }
-
-    if (quantity > 0) {
-      this.cart.addItem({ ...product, quantity });
-    } else {
-      this.cart.removeItem(productId);
-    }
+    if (checkbox) checkbox.checked = quantity > 0;
+    this.clearFlavorError();
     this.updateOrderSummary();
   }
 
   updateOrderSummary() {
-    const summaryContainer = this.form.querySelector('[data-order-summary]');
+    const summaryContainer = document.querySelector('[data-order-summary]');
     if (!summaryContainer) return;
 
-    const selectedItems = this.cart.items.filter(item =>
-      this.products.some(p => p.id === item.id)
-    );
+    const selectedItems = this.getSelectedItems();
 
     if (selectedItems.length === 0) {
       summaryContainer.innerHTML = `
@@ -461,6 +438,7 @@ class OrderFormManager {
     const requiredFields = this.form.querySelectorAll('[required]');
 
     requiredFields.forEach(field => {
+      if (field.type === 'checkbox') return;
       const errorEl = field.parentNode.querySelector('.form-error');
       if (!field.value.trim()) {
         field.classList.add('has-error');
@@ -482,11 +460,19 @@ class OrderFormManager {
       emailField.classList.remove('has-error');
     }
 
-    const selectedItems = this.cart.items.filter(item =>
-      this.products.some(p => p.id === item.id)
-    );
-    if (selectedItems.length === 0) {
-      this.cart.showToast('Please select at least one product', 'error');
+    const flavorCheckboxes = Array.from(this.form.querySelectorAll('[data-flavor-select]'));
+    const flavorErrorEl = this.form.querySelector('[data-flavor-error]');
+    if (!flavorCheckboxes.some(cb => cb.checked)) {
+      flavorCheckboxes.forEach(cb => cb.classList.add('has-error'));
+      if (flavorErrorEl) flavorErrorEl.textContent = 'Please select at least one flavor';
+      isValid = false;
+    } else {
+      flavorCheckboxes.forEach(cb => cb.classList.remove('has-error'));
+      if (flavorErrorEl) flavorErrorEl.textContent = '';
+    }
+
+    if (this.getSelectedItems().length === 0) {
+      showToast('Please select at least one product', 'error');
       isValid = false;
     }
 
@@ -503,16 +489,11 @@ class OrderFormManager {
     submitBtn.disabled = true;
     submitBtn.innerHTML = '<span style="display:inline-block;width:16px;height:16px;border:2px solid currentColor;border-radius:50%;border-right-color:transparent;animation:spin 0.8s linear infinite;margin-right:8px;"></span>Submitting...';
 
-    const style = document.createElement('style');
-    style.textContent = '@keyframes spin { to { transform: rotate(360deg); } }';
-    document.head.appendChild(style);
-
     try {
       const formData = new FormData(this.form);
+      const items = this.getSelectedItems();
       const orderData = {
-        items: this.cart.items.filter(item =>
-          this.products.some(p => p.id === item.id)
-        ),
+        items,
         customer: {
           name: formData.get('name'),
           email: formData.get('email'),
@@ -520,35 +501,54 @@ class OrderFormManager {
           address: formData.get('address'),
           notes: formData.get('notes')
         },
-        total: this.cart.getTotalPrice(),
+        total: items.reduce((sum, item) => sum + item.price * item.quantity, 0),
         timestamp: new Date().toISOString()
       };
 
-      await this.simulateSubmission(orderData);
+      await this.sendOrder(orderData);
 
-      this.cart.showToast('Order submitted successfully! We\'ll contact you soon.', 'success');
+      showToast('Order submitted successfully! We\'ll contact you soon.', 'success');
       this.form.reset();
       this.form.querySelectorAll('.has-error').forEach(el => el.classList.remove('has-error'));
       this.form.querySelectorAll('.form-error').forEach(el => el.textContent = '');
-      this.cart.clearCart();
       this.updateOrderSummary();
 
     } catch (error) {
-      this.cart.showToast('Failed to submit order. Please try again.', 'error');
+      showToast(error.message || 'Failed to submit order. Please try again.', 'error');
     } finally {
       submitBtn.disabled = false;
       submitBtn.innerHTML = originalText;
-      style.remove();
     }
   }
 
-  simulateSubmission(data) {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        console.log('Order submitted:', data);
-        resolve();
-      }, 1500);
+  async sendOrder(order) {
+    if (!WEB3FORMS_KEY || WEB3FORMS_KEY === 'YOUR_ACCESS_KEY') {
+      throw new Error('Order form is not connected yet — please email farm.kamatamis@email.com.');
+    }
+
+    const payload = {
+      access_key: WEB3FORMS_KEY,
+      subject: `New Kamatamis pre-order — ₱${order.total.toLocaleString()}`,
+      from_name: 'Kamatamis Spread Website',
+      name: order.customer.name,
+      email: order.customer.email,
+      phone: order.customer.phone || 'Not provided',
+      address: order.customer.address,
+      notes: order.customer.notes || 'None',
+      items: order.items.map(item => `${item.name} × ${item.quantity}`).join('\n'),
+      total: `₱${order.total.toLocaleString()}`,
+      submitted_at: order.timestamp
+    };
+
+    const response = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify(payload)
     });
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok || !result.success) {
+      throw new Error('Failed to submit order. Please try again.');
+    }
   }
 }
 
@@ -616,9 +616,9 @@ class ProductModalManager {
         title: 'Kamatamis Spread - Classic Flavor',
         price: 114,
         size: '150ml',
-        description: 'Our classic Kamatamis Spread made from upcycled surplus tomatoes, slow-cooked to perfection with brown sugar, lemon juice, cinnamon, and ginger. Soft, smooth texture with a balanced sweet tomato taste.',
+        description: 'Our classic Kamatamis Spread made from upcycled second-class tomatoes, slow-cooked to perfection with brown sugar, lemon juice, cinnamon, and ginger. Soft, smooth texture with a balanced sweet tomato taste.',
         ingredients: [
-          'Surplus tomatoes (upcycled)',
+          'Second-Class tomatoes (upcycled)',
           'Brown sugar',
           'Lemon juice',
           'Cinnamon powder',
@@ -640,9 +640,9 @@ class ProductModalManager {
         title: 'Kamatamis Spread - Spicy-Chili Flavor',
         price: 119,
         size: '150ml',
-        description: 'Our signature spread with a kick! Made from upcycled surplus tomatoes with chili powder and flakes for a balanced spicy heat that complements the natural tomato sweetness.',
+        description: 'Our signature spread with a kick! Made from upcycled second-class tomatoes with chili powder and flakes for a balanced spicy heat that complements the natural tomato sweetness.',
         ingredients: [
-          'Surplus tomatoes (upcycled)',
+          'Second-Class tomatoes (upcycled)',
           'Brown sugar',
           'Lemon juice',
           'Cinnamon powder',
@@ -672,10 +672,10 @@ class ProductModalManager {
         title: product.title,
         body: this.generateModalContent(product),
         footer: `
-          <button class="btn btn-primary" data-add-to-cart="${id}">
-            <i data-lucide="shopping-cart" style="width:18px;height:18px;display:inline;vertical-align:middle;margin-right:8px;"></i>Add to Order - P${product.price}
-          </button>
-          <button class="btn btn-secondary modal-close">Continue Browsing</button>
+          <a href="contact.html?flavor=${id}#order-form" class="btn btn-accent">
+            <i data-lucide="shopping-bag" style="width:18px;height:18px;display:inline;vertical-align:middle;margin-right:8px;"></i>Place a Pre-Order
+          </a>
+          <button class="btn btn-secondary modal-close">Close</button>
         `
       }));
     });
@@ -717,60 +717,50 @@ class ProductModalManager {
           <p class="product-modal-text">${product.nutrition}</p>
         </div>
       </div>
-      <style>
-        .product-modal-content { display: flex; flex-direction: column; gap: 1.5rem; }
-        .product-modal-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--color-border); }
-        .product-modal-price { display: flex; flex-direction: column; gap: 0.25rem; }
-        .product-modal-size { font-size: 0.875rem; color: var(--color-text-light); }
-        .product-modal-cost { font-family: var(--font-accent); font-size: 1.5rem; font-weight: 700; color: var(--color-primary); }
-        .product-modal-description { color: var(--color-text-light); line-height: 1.7; }
-        .product-modal-section-title { font-family: var(--font-accent); font-size: 1rem; font-weight: 600; color: var(--color-primary); margin-bottom: 0.5rem; }
-        .product-modal-list { list-style: none; display: flex; flex-direction: column; gap: 0.375rem; }
-        .product-modal-list li { position: relative; padding-left: 1.25rem; color: var(--color-text-light); font-size: 0.9375rem; }
-        .product-modal-list li::before { content: "✓"; position: absolute; left: 0; color: var(--color-success); font-weight: 600; }
-        .product-modal-text { color: var(--color-text-light); line-height: 1.6; }
-      </style>
     `;
   }
 }
 
-class ToastManager {
+class CountUp {
   constructor() {
-    this.container = this.createContainer();
+    this.elements = document.querySelectorAll('[data-count-to]');
+    this.init();
   }
 
-  createContainer() {
-    const container = document.createElement('div');
-    container.id = 'toast-container';
-    container.style.cssText = 'position: fixed; bottom: 2rem; right: 2rem; z-index: 1100; display: flex; flex-direction: column; gap: 0.5rem; pointer-events: none;';
-    document.body.appendChild(container);
-    return container;
-  }
+  init() {
+    if (!this.elements.length) return;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  show(message, type = 'success', duration = 4000) {
-    const toast = document.createElement('div');
-    toast.className = `toast ${type}`;
-    toast.style.pointerEvents = 'auto';
-    toast.innerHTML = `
-      <span>${message}</span>
-      <button class="toast-close" aria-label="Dismiss">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="18" y1="6" x2="6" y2="18"></line>
-          <line x1="6" y1="6" x2="18" y2="18"></line>
-        </svg>
-      </button>
-    `;
-    this.container.appendChild(toast);
+    this.elements.forEach(el => {
+      const raw = el.getAttribute('data-count-to');
+      const target = parseFloat(raw);
+      if (isNaN(target)) return;
+      const decimals = (raw.split('.')[1] || '').length;
+      const format = (value) => value.toFixed(decimals);
 
-    requestAnimationFrame(() => toast.classList.add('active'));
+      if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+        el.textContent = format(target);
+        return;
+      }
 
-    const close = () => {
-      toast.classList.remove('active');
-      setTimeout(() => toast.remove(), 250);
-    };
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          observer.unobserve(el);
+          const duration = 1400;
+          const start = performance.now();
+          const tick = (now) => {
+            const progress = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            el.textContent = format(target * eased);
+            if (progress < 1) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
+        });
+      }, { threshold: 0.4 });
 
-    toast.querySelector('.toast-close').addEventListener('click', close);
-    setTimeout(close, duration);
+      observer.observe(el);
+    });
   }
 }
 
@@ -808,9 +798,8 @@ document.addEventListener('DOMContentLoaded', () => {
     lucide.createIcons();
   }
   window.modalManager = new ModalManager();
-  window.cartManager = new CartManager();
-  window.toastManager = new ToastManager();
   new ScrollReveal();
+  new CountUp();
 
   if (document.querySelector('#order-form')) {
     window.orderFormManager = new OrderFormManager('#order-form');
@@ -836,18 +825,4 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
-
-  document.addEventListener('click', (e) => {
-    const addCartBtn = e.target.closest('[data-add-to-cart]');
-    if (addCartBtn) {
-      const productId = addCartBtn.getAttribute('data-add-to-cart');
-      const product = {
-              classic: { id: 'classic', name: 'Kamatamis Spread - Classic Flavor', price: 114, flavor: 'Classic' },
-        spicy: { id: 'spicy', name: 'Kamatamis Spread - Spicy-Chili Flavor', price: 119, flavor: 'Spicy-Chili' }
-      }[productId];
-      if (product) {
-        window.cartManager.addItem({ ...product, quantity: 1 });
-      }
-    }
-  });
 });

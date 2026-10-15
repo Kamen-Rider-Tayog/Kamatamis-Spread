@@ -5,7 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Kamatamis Spread - Products & Pricing. Original and Spicy-Chili flavors with transparent ingredient sourcing.">
   <meta name="theme-color" content="#8B1A1A">
-  <title>Kamatamis Spread</title>
+  <meta property="og:title" content="Products & Pricing | Kamatamis Spread">
+  <meta property="og:description" content="Kamatamis Spread - Products & Pricing. Original and Spicy-Chili flavors with transparent ingredient sourcing.">
+  <meta property="og:type" content="website">
+  <title>Products & Pricing | Kamatamis Spread</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
@@ -26,7 +29,7 @@
         <div class="grid grid-2-col">
           <article class="card product-card" data-reveal>
             <div style="position: relative;">
-              <img src="https://images.unsplash.com/photo-1598514982285-2a57cf24b67c?w=400&h=400&fit=crop" alt="Kamatamis Spread Original Flavor" class="card-image">
+              <img src="assets/images/classic-jar.svg" alt="Kamatamis Spread Original Flavor" class="card-image" width="400" height="300" loading="lazy" decoding="async">
               <span class="badge badge-flavor product-badge">Original</span>
             </div>
             <div class="product-info">
@@ -39,12 +42,11 @@
             </div>
             <div class="card-footer">
               <button class="btn btn-primary btn-sm" data-product-modal="classic">View Details</button>
-              <a href="contact.html" class="btn btn-secondary btn-sm">Pre-Order</a>
             </div>
           </article>
           <article class="card product-card" data-reveal>
             <div style="position: relative;">
-              <img src="https://images.unsplash.com/photo-1560490678-e37d89d3a7b0?w=400&h=400&fit=crop" alt="Kamatamis Spread Spicy-Chili Flavor" class="card-image">
+              <img src="assets/images/spicy-jar.svg" alt="Kamatamis Spread Spicy-Chili Flavor" class="card-image" width="400" height="300" loading="lazy" decoding="async">
               <span class="badge badge-flavor spicy product-badge">Spicy</span>
             </div>
             <div class="product-info">
@@ -57,12 +59,11 @@
             </div>
             <div class="card-footer">
               <button class="btn btn-primary btn-sm" data-product-modal="spicy">View Details</button>
-              <a href="contact.html" class="btn btn-secondary btn-sm">Pre-Order</a>
             </div>
           </article>
         </div>
         <div style="text-align: center; margin-top: var(--spacing-xl);" data-reveal>
-          <a href="contact.html" class="btn btn-accent btn-lg">Place a Pre-Order</a>
+          <a href="contact.html#order-form" class="btn btn-accent btn-lg">Place a Pre-Order</a>
         </div>
       </div>
     </section>
@@ -70,69 +71,13 @@
     <section class="section-padding" aria-labelledby="transparency-title">
       <div class="container">
         <header class="section-header">
-          <h2 id="transparency-title" class="section-title">Transparent Sourcing</h2>
-          <p class="section-subtitle">Every ingredient accounted for</p>
+          <h2 id="transparency-title" class="section-title">Nutrition Facts</h2>
+          <p class="section-subtitle">What's inside every jar</p>
         </header>
-        <div class="tabs" data-reveal>
-          <button class="tab-btn active" data-tab-target="tab-ingredients">Ingredients</button>
-          <button class="tab-btn" data-tab-target="tab-costs">Indirect Costs</button>
-          <button class="tab-btn" data-tab-target="tab-nutrition">Nutrition</button>
-        </div>
-        <div id="tab-ingredients" class="tab-panel active" data-reveal>
-          <div class="table-responsive">
-            <table class="table-custom" id="table-ingredients">
-              <thead>
-                <tr>
-                  <th data-sortable>Ingredient</th>
-                  <th data-sortable>Source</th>
-                  <th data-sortable>Purpose</th>
-                  <th data-sortable>Qty per Batch</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><td><strong>Surplus Tomatoes</strong></td><td>Bukidnon Farms</td><td>Primary base</td><td>50 kg</td></tr>
-                <tr><td><strong>Brown Sugar</strong></td><td>Negros Occidental</td><td>Sweetener</td><td>15 kg</td></tr>
-                <tr><td><strong>Lemon Juice</strong></td><td>Local Suppliers</td><td>Preservative & flavor</td><td>2 L</td></tr>
-                <tr><td><strong>Cinnamon Powder</strong></td><td>Camarines Sur</td><td>Warm flavor</td><td>500 g</td></tr>
-                <tr><td><strong>Fresh Ginger</strong></td><td>Oriental Mindoro</td><td>Aromatic spice</td><td>2 kg</td></tr>
-                <tr><td><strong>Chili Powder</strong></td><td>Batangas</td><td>Heat source</td><td>500 g</td></tr>
-                <tr><td><strong>Chili Flakes</strong></td><td>Batangas</td><td>Texture & heat</td><td>300 g</td></tr>
-                <tr><td><strong>Salt</strong></td><td>Local Market</td><td>Flavor enhancer</td><td>200 g</td></tr>
-              </tbody>
-            </table>
+        <div data-reveal>
+          <div class="table-toolbar">
+            <input type="search" class="form-input" placeholder="Search nutrients..." aria-label="Search nutrients" data-table-search="#table-nutrition">
           </div>
-        </div>
-        <div id="tab-costs" class="tab-panel" data-reveal>
-          <div class="table-responsive">
-            <table class="table-custom" id="table-costs">
-              <thead>
-                <tr>
-                  <th data-sortable>Cost Category</th>
-                  <th data-sortable>Item</th>
-                  <th data-sortable>Amount</th>
-                  <th data-sortable>Notes</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><td colspan="4" style="background-color: var(--color-surface-alt); font-weight: 600;">Table 1 — Raw Materials</td></tr>
-                <tr><td>Raw Materials</td><td>Surplus Tomatoes</td><td>P2,500.00</td><td>Per 50 kg batch</td></tr>
-                <tr><td>Raw Materials</td><td>Brown Sugar</td><td>P1,200.00</td><td>Per 15 kg batch</td></tr>
-                <tr><td>Raw Materials</td><td>Spices & Flavoring</td><td>P800.00</td><td>All spices combined</td></tr>
-                <tr><td colspan="4" style="background-color: var(--color-surface-alt); font-weight: 600;">Table 2 — Packaging & Labor</td></tr>
-                <tr><td>Packaging</td><td>Eco Glass Jars (150ml)</td><td>P85.00</td><td>Per jar</td></tr>
-                <tr><td>Packaging</td><td>Metal Lids</td><td>P12.00</td><td>Per jar</td></tr>
-                <tr><td>Packaging</td><td>Labels & Stickers</td><td>P5.00</td><td>Per jar</td></tr>
-                <tr><td>Labor</td><td>Processing & Assembly</td><td>P300.00</td><td>Per batch</td></tr>
-                <tr><td colspan="4" style="background-color: var(--color-surface-alt); font-weight: 600;">Table 3 — Logistics & Overhead</td></tr>
-                <tr><td>Logistics</td><td>Transport</td><td>P2,000.00</td><td>Per batch</td></tr>
-                <tr><td>Overhead</td><td>Utilities</td><td>P1,500.00</td><td>Per batch</td></tr>
-                <tr><td>Overhead</td><td>Marketing & Distribution</td><td>P1,000.00</td><td>Per batch</td></tr>
-                <tr style="font-weight: 700; background-color: #FFF8F8;"><td colspan="2">Total Indirect Cost per Batch</td><td>P9,302.00</td><td>Excluding profit margin</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div id="tab-nutrition" class="tab-panel" data-reveal>
           <div class="table-responsive">
             <table class="table-custom" id="table-nutrition">
               <thead>
@@ -163,6 +108,7 @@
 
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <div id="app-footer"></div>
+  <script src="scripts/config.js"></script>
   <script src="scripts/components.js"></script>
   <script src="scripts/script.js"></script>
 </body>

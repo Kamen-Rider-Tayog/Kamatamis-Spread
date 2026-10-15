@@ -2,10 +2,11 @@ const HEADER_TEMPLATE = `
   <header class="navbar" role="banner">
     <div class="navbar-container">
       <a href="index.html" class="navbar-brand" aria-label="Kamatamis Spread - Home">
-        <span class="brand-logo"></span>
+        <img src="assets/images/logo.svg" alt="" class="brand-logo" width="40" height="40">
+        <span class="brand-text">Kamatamis <em>Spread</em></span>
       </a>
-      <nav class="navbar-nav" role="navigation" aria-label="Main navigation">
-        <ul class="navbar-nav">
+      <nav class="navbar-menu" role="navigation" aria-label="Main navigation">
+        <ul class="navbar-nav" id="navbar-nav">
           <li><a href="index.html" class="navbar-link">Home</a></li>
           <li><a href="impact.html" class="navbar-link">Our Story</a></li>
           <li><a href="products.html" class="navbar-link">Products</a></li>
@@ -14,11 +15,7 @@ const HEADER_TEMPLATE = `
         </ul>
       </nav>
       <div class="navbar-actions">
-        <button class="navbar-cart-btn" aria-label="Shopping cart">
-          <i data-lucide="shopping-cart" class="lucide-icon"></i>
-          <span class="cart-badge" style="display: none;"></span>
-        </button>
-        <a href="#order-form" class="btn btn-secondary btn-sm">Pre-Order</a>
+        <a href="contact.html#order-form" class="btn btn-accent btn-sm">Pre-Order</a>
         <button class="navbar-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navbar-nav">
           <span class="navbar-toggle-icon" aria-hidden="true"></span>
         </button>
@@ -33,11 +30,11 @@ const FOOTER_TEMPLATE = `
       <div class="footer-grid">
         <div class="footer-brand">
           <div class="footer-logo">
-            <span class="brand-logo"></span>
+            <img src="assets/images/logo.svg" alt="" class="brand-logo" width="40" height="40">
             <span class="brand-product">Kamatamis Spread</span>
           </div>
           <p class="footer-tagline">Where Every Tomato Counts</p>
-          <p class="footer-text">A F.A.R.M. enterprise transforming surplus tomatoes into premium spreads. Supporting Bukidnon farmers, reducing food waste, delivering nutrition.</p>
+          <p class="footer-text">A F.A.R.M. enterprise transforming second-class tomatoes into premium spreads. Supporting Bukidnon farmers, reducing food waste, delivering nutrition.</p>
         </div>
         <nav class="footer-nav" aria-label="Quick links">
           <h3 class="footer-title">Quick Links</h3>
@@ -61,14 +58,14 @@ const FOOTER_TEMPLATE = `
         <div class="footer-nav">
           <h3 class="footer-title">Connect</h3>
           <ul class="footer-links">
-            <li class="footer-link"><i data-lucide="map-pin" style="width:14px;height:14px;display:inline;vertical-align:middle;margin-right:4px;"></i> Cavite State University</li>
+            <li class="footer-link"><i data-lucide="map-pin" style="width:14px;height:14px;display:inline;vertical-align:middle;margin-right:4px;"></i> Cavite State University — General Trias City Campus</li>
             <li class="footer-link"><i data-lucide="mail" style="width:14px;height:14px;display:inline;vertical-align:middle;margin-right:4px;"></i> farm.kamatamis@email.com</li>
-            <li class="footer-link"><i data-lucide="phone" style="width:14px;height:14px;display:inline;vertical-align:middle;margin-right:4px;"></i> +63 9XX XXX XXXX</li>
+            <li class="footer-link"><i data-lucide="phone" style="width:14px;height:14px;display:inline;vertical-align:middle;margin-right:4px;"></i> 0966 988 0214</li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
-        <p class="footer-copyright">&copy; 2024 F.A.R.M. - Kamatamis Spread. All rights reserved.</p>
+        <p class="footer-copyright">&copy; ${new Date().getFullYear()} F.A.R.M. - Kamatamis Spread. All rights reserved.</p>
         <div class="footer-bottom-right">
           <div class="brand-trademark">
             <span>Made with</span>

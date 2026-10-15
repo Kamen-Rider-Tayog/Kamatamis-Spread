@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 460" width="600" height="460" role="img" aria-label="Illustration of Kamatamis tomato spread jar surrounded by tomatoes">
+  <defs>
+    <linearGradient id="hGlass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#F5F0E8"/>
+    </linearGradient>
+    <linearGradient id="hJam" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#A82C2C"/>
+      <stop offset="1" stop-color="#6B0F0F"/>
+    </linearGradient>
+    <clipPath id="hJarClip">
+      <rect x="243" y="132" width="114" height="196" rx="16"/>
+    </clipPath>
+  </defs>
+
+  <circle cx="300" cy="228" r="196" fill="#F5F0E8"/>
+  <circle cx="300" cy="228" r="150" fill="#FDFBF7"/>
+  <ellipse cx="300" cy="392" rx="150" ry="18" fill="#E8E0D8"/>
+
+  <g>
+    <rect x="240" y="128" width="120" height="200" rx="17" fill="url(#hGlass)" stroke="#E8E0D8" stroke-width="3"/>
+    <g clip-path="url(#hJarClip)">
+      <path d="M243 214 q15 -11 30 -1 t30 1 t30 -1 t30 1 v24 H243 z" fill="url(#hJam)"/>
+      <rect x="243" y="224" width="114" height="104" fill="url(#hJam)"/>
+      <rect x="254" y="140" width="9" height="150" rx="4.5" fill="#FFFFFF" opacity="0.5"/>
+      <circle cx="280" cy="270" r="2.4" fill="#D4A017" opacity="0.7"/>
+      <circle cx="322" cy="300" r="2.4" fill="#D4A017" opacity="0.7"/>
+      <circle cx="316" cy="258" r="1.8" fill="#D4A017" opacity="0.6"/>
+    </g>
+    <rect x="232" y="100" width="136" height="34" rx="9" fill="#D4A017"/>
+    <rect x="232" y="100" width="136" height="11" rx="5.5" fill="#E8C547"/>
+    <rect x="232" y="124" width="136" height="4.5" rx="2.2" fill="#B8860B"/>
+
+    <rect x="253" y="238" width="94" height="66" rx="9" fill="#FFF8F8" stroke="#E8E0D8" stroke-width="2"/>
+    <text x="300" y="264" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="13" font-weight="700" letter-spacing="1" textLength="72" lengthAdjust="spacingAndGlyphs" fill="#8B1A1A">KAMATAMIS</text>
+    <text x="300" y="278" text-anchor="middle" font-family="Verdana, Geneva, sans-serif" font-size="7.5" letter-spacing="1.2" fill="#6B6B6B">TOMATO SPREAD</text>
+    <circle cx="300" cy="292" r="5" fill="#C62828"/>
+    <path d="M300 286.5 q4.5 -6.5 10 -5.5 q-2.5 6.5 -10 5.5 z" fill="#2E7D32"/>
+  </g>
+
+  <g>
+    <circle cx="156" cy="330" r="34" fill="#C62828"/>
+    <ellipse cx="145" cy="319" rx="9" ry="6" fill="#FFFFFF" opacity="0.28"/>
+    <path d="M156 296 q10 -14 22 -11 q-5 14 -22 11 z" fill="#2E7D32"/>
+    <path d="M156 297 q1 -8 5 -12" stroke="#2E7D32" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+  </g>
+  <g>
+    <circle cx="446" cy="322" r="26" fill="#C62828"/>
+    <ellipse cx="438" cy="314" rx="7" ry="4.5" fill="#FFFFFF" opacity="0.28"/>
+    <path d="M446 296 q8 -11 17 -8 q-4 11 -17 8 z" fill="#2E7D32"/>
+  </g>
+  <g>
+    <circle cx="404" cy="368" r="18" fill="#C62828"/>
+    <path d="M404 350 q6 -8 12 -6 q-3 8 -12 6 z" fill="#2E7D32"/>
+  </g>
+  <g>
+    <path d="M150 244 q18 -34 0 -66" stroke="#8B1A1A" stroke-width="0" fill="none"/>
+    <circle cx="176" cy="196" r="9" fill="#2E7D32"/>
+    <circle cx="196" cy="214" r="7" fill="#2E7D32"/>
+    <circle cx="164" cy="220" r="6" fill="#2E7D32"/>
+    <path d="M176 205 q10 -30 34 -44" stroke="#8B1A1A" stroke-width="3" fill="none" stroke-linecap="round"/>
+  </g>
+  <g>
+    <path d="M424 202 q-16 -30 -42 -40" stroke="#8B1A1A" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <circle cx="408" cy="182" r="7" fill="#2E7D32"/>
+    <circle cx="386" cy="166" r="5.5" fill="#2E7D32"/>
+  </g>
+</svg>

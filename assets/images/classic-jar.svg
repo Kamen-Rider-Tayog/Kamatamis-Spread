@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300" role="img" aria-label="Jar of Kamatamis classic tomato spread">
+  <defs>
+    <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#F5F0E8"/>
+    </linearGradient>
+    <linearGradient id="jam" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#A82C2C"/>
+      <stop offset="1" stop-color="#6B0F0F"/>
+    </linearGradient>
+    <clipPath id="jarClip">
+      <rect x="147" y="92" width="106" height="154" rx="13"/>
+    </clipPath>
+  </defs>
+
+  <rect width="400" height="300" fill="#FDFBF7"/>
+  <circle cx="200" cy="148" r="116" fill="#F5F0E8"/>
+  <ellipse cx="200" cy="262" rx="92" ry="10" fill="#E8E0D8"/>
+
+  <g>
+    <rect x="145" y="90" width="110" height="158" rx="14" fill="url(#glass)" stroke="#E8E0D8" stroke-width="3"/>
+    <g clip-path="url(#jarClip)">
+      <path d="M147 162 q13 -9 26 -1 t26 1 t26 -1 t26 1 v20 H147 z" fill="url(#jam)"/>
+      <rect x="147" y="170" width="106" height="76" fill="url(#jam)"/>
+      <rect x="156" y="100" width="8" height="118" rx="4" fill="#FFFFFF" opacity="0.5"/>
+    </g>
+    <rect x="138" y="62" width="124" height="30" rx="8" fill="#D4A017"/>
+    <rect x="138" y="62" width="124" height="10" rx="5" fill="#E8C547"/>
+    <rect x="138" y="84" width="124" height="4" rx="2" fill="#B8860B"/>
+
+    <rect x="158" y="176" width="84" height="58" rx="8" fill="#FFF8F8" stroke="#E8E0D8" stroke-width="2"/>
+    <text x="200" y="200" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="11" font-weight="700" letter-spacing="0.5" textLength="68" lengthAdjust="spacingAndGlyphs" fill="#8B1A1A">KAMATAMIS</text>
+    <text x="200" y="212" text-anchor="middle" font-family="Verdana, Geneva, sans-serif" font-size="7" letter-spacing="1.5" fill="#6B6B6B">TOMATO SPREAD</text>
+    <circle cx="200" cy="224" r="4.5" fill="#C62828"/>
+    <path d="M200 219 q4 -6 9 -5 q-2 6 -9 5 z" fill="#2E7D32"/>
+  </g>
+
+  <g>
+    <circle cx="302" cy="206" r="24" fill="#C62828"/>
+    <ellipse cx="294" cy="198" rx="7" ry="5" fill="#FFFFFF" opacity="0.25"/>
+    <path d="M302 182 q8 -11 17 -9 q-4 11 -17 9 z" fill="#2E7D32"/>
+    <path d="M302 183 q1 -6 4 -9" stroke="#2E7D32" stroke-width="3" fill="none" stroke-linecap="round"/>
+  </g>
+  <g>
+    <circle cx="94" cy="222" r="16" fill="#C62828"/>
+    <ellipse cx="89" cy="217" rx="5" ry="3.5" fill="#FFFFFF" opacity="0.25"/>
+    <path d="M94 206 q6 -8 12 -6 q-3 7 -12 6 z" fill="#2E7D32"/>
+  </g>
+</svg>
