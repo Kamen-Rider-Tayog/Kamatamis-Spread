@@ -2,7 +2,7 @@ const HEADER_TEMPLATE = `
   <header class="navbar" role="banner">
     <div class="navbar-container">
       <a href="index.html" class="navbar-brand" aria-label="Kamatamis Spread - Home">
-        <img src="assets/images/logo.svg" alt="" class="brand-logo" width="40" height="40">
+        <img src="assets/images/logo.jpg" alt="" class="brand-logo" width="40" height="40">
         <span class="brand-text">Kamatamis <em>Spread</em></span>
       </a>
       <nav class="navbar-menu" role="navigation" aria-label="Main navigation">
@@ -12,6 +12,7 @@ const HEADER_TEMPLATE = `
           <li><a href="products.html" class="navbar-link">Products</a></li>
           <li><a href="process.html" class="navbar-link">Production</a></li>
           <li><a href="contact.html" class="navbar-link">Contact</a></li>
+          <li class="navbar-cta"><a href="contact.html#order-form" class="btn btn-accent btn-sm">Pre-Order</a></li>
         </ul>
       </nav>
       <div class="navbar-actions">
@@ -30,7 +31,7 @@ const FOOTER_TEMPLATE = `
       <div class="footer-grid">
         <div class="footer-brand">
           <div class="footer-logo">
-            <img src="assets/images/logo.svg" alt="" class="brand-logo" width="40" height="40">
+            <img src="assets/images/logo.jpg" alt="" class="brand-logo" width="40" height="40">
             <span class="brand-product">Kamatamis Spread</span>
           </div>
           <p class="footer-tagline">Where Every Tomato Counts</p>
@@ -58,7 +59,7 @@ const FOOTER_TEMPLATE = `
         <div class="footer-nav">
           <h3 class="footer-title">Connect</h3>
           <ul class="footer-links">
-            <li class="footer-link"><i data-lucide="map-pin" style="width:14px;height:14px;display:inline;vertical-align:middle;margin-right:4px;"></i> Cavite State University — General Trias City Campus</li>
+            <li class="footer-link"><i data-lucide="map-pin" style="width:14px;height:14px;display:inline;vertical-align:middle;margin-right:4px;"></i> Brgy. San Francisco, General Trias, Cavite</li>
             <li class="footer-link"><i data-lucide="mail" style="width:14px;height:14px;display:inline;vertical-align:middle;margin-right:4px;"></i> farm.kamatamis@email.com</li>
             <li class="footer-link"><i data-lucide="phone" style="width:14px;height:14px;display:inline;vertical-align:middle;margin-right:4px;"></i> 0966 988 0214</li>
           </ul>

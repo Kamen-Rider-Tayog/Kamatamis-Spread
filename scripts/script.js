@@ -275,8 +275,8 @@ class OrderFormManager {
     this.form = document.querySelector(formSelector);
     if (!this.form) return;
     this.products = [
-      { id: 'classic', name: 'Kamatamis Spread - Classic Flavor', price: 114, flavor: 'Classic', image: 'assets/images/classic-jar.svg' },
-      { id: 'spicy', name: 'Kamatamis Spread - Spicy-Chili Flavor', price: 119, flavor: 'Spicy-Chili', image: 'assets/images/spicy-jar.svg' }
+      { id: 'classic', name: 'Kamatamis Spread - Classic Flavor', price: 114, flavor: 'Classic', image: 'assets/images/classic.jpg' },
+      { id: 'spicy', name: 'Kamatamis Spread - Spicy-Chili Flavor', price: 119, flavor: 'Spicy-Chili', image: 'assets/images/spicy.jpg' }
     ];
     this.init();
   }

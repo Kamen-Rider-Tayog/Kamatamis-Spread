@@ -35,10 +35,12 @@
 }
 
 .navbar-brand .brand-logo {
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   flex-shrink: 0;
   display: block;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .navbar-brand .brand-text {
@@ -98,6 +100,8 @@
   align-items: center;
   gap: var(--spacing-md);
 }
+
+.navbar-cta { display: none; }
 
 .navbar-toggle {
   display: none;
@@ -166,6 +170,9 @@
   .navbar-link { width: 100%; padding: var(--spacing-md); justify-content: center; }
   .navbar-link::after { display: none; }
   .navbar-toggle { display: flex; }
+  .navbar-actions > .btn { display: none; }
+  .navbar-cta { display: flex; width: 100%; padding-top: var(--spacing-sm); }
+  .navbar-cta .btn { width: 100%; }
 }
 
 .hero {
@@ -326,10 +333,12 @@
 }
 
 .footer-logo .brand-logo {
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   flex-shrink: 0;
   display: block;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .footer-tagline {
@@ -421,4 +430,7 @@
 
 @media (max-width: 768px) {
   .main-section { margin-bottom: var(--spacing-2xl); }
+  main > .section-padding:first-child {
+    padding-top: calc(var(--header-height) + var(--spacing-lg));
+  }
 }
